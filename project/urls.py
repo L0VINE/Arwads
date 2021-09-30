@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from django.contrib import admin
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'',include('Awwards.urls')),
+    url('accounts/', include('django.contrib.auth.urls')),
+    url(r'^api-token-auth/', obtain_auth_token)
 ]
