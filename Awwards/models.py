@@ -17,6 +17,7 @@ class Profile(models.Model):
         if created:
             Profile.objects.create(user=instance)
 
+        post_save.connect(create_user_profile, sender=User)
 
     def save_profile(self):
         self.save()
